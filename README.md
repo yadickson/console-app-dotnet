@@ -1,15 +1,42 @@
 # console-app-dotnet
 Console App Dotnet to Test
 
+## Create project solution
+
+```
+mkdir console
+cd console
+dotnet new sln -n console
+```
+
+## Create Console App project
+
+```
+dotnet new console -n App -f net6.0
+dotnet sln add App/App.csproj
+```
+
+## Create Class Calc project
+
+```
+dotnet new classlib -n Calc -f net6.0
+dotnet add App/App.csproj reference Calc/Calc.csproj
+dotnet sln add Calc/Calc.csproj
+```
+
+## Create NUnit Calc Test project
+
+```
+dotnet new nunit -n CalcTests -f net6.0
+dotnet add CalcTests package Faker.Net
+dotnet add CalcTests/CalcTests.csproj reference Calc/Calc.csproj
+dotnet sln add CalcTests/CalcTests.csproj
+```
 
 ## Add packages
 
 ```
-cd App
-```
-
-```
-dotnet add package SecurityCodeScan.VS2019 --version 5.6.7
+dotnet add App package SecurityCodeScan.VS2019
 ```
 
 ## Install global applications
@@ -25,14 +52,3 @@ $HOME/.dotnet/tools/security-scan console.sln
 ```
 
 
-## Create Test project
-
-```
-dotnet new nunit -n AppTests
-dotnet add AppTests/AppTests.csproj reference App/App.csproj
-dotnet sln add AppTests/AppTests.csproj        
-```
-
-```
-dotnet add AppTests package Faker.Net
-```
